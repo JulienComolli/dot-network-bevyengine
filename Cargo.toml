@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 
-# dynamic_linking A SUPPRIMER A LA RELEASE !!! (voir https://bevyengine.org/learn/quick-start/getting-started/setup/)
+# Dynamic linking to delete in realease mode
 bevy = { version = "0.13.0", features = ["dynamic_linking"] }
 rand = "0.8.5"
 
