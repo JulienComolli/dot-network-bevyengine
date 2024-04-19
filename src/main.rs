@@ -81,8 +81,7 @@ fn main() {
             (
                 handle_keyboard_input,
                 update_info_text,
-                (apply_dot_velocity, apply_dot_collision).chain(),
-                connect_dot,
+                (apply_dot_velocity, apply_dot_collision, connect_dot).chain(),
             ),
         )
         .run();
