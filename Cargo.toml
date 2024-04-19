@@ -1,0 +1,21 @@
+[package]
+name = "dot-network"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# dynamic_linking A SUPPRIMER A LA RELEASE !!! (voir https://bevyengine.org/learn/quick-start/getting-started/setup/)
+bevy = { version = "0.13.0", features = ["dynamic_linking"] }
+rand = "0.8.5"
+
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
