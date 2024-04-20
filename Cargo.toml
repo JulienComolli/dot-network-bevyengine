@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 
 # Dynamic linking to delete in realease mode
-bevy = { version = "0.13.0", features = ["dynamic_linking"] }
+bevy = "0.13.0"
 rand = "0.8.5"
 
 
@@ -19,3 +19,8 @@ opt-level = 1
 # Enable high optimizations for dependencies (incl. Bevy), but not for our code:
 [profile.dev.package."*"]
 opt-level = 3
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
