@@ -100,18 +100,14 @@ fn connect_dot(
     query: Query<&Transform, With<Dot>>,
     simu_conf: Res<SimuConf>,
 ) {
-    for dot in &query {
-        for dot2 in &query {
-            // TODO : Add "something" to differenciate dot and dot2 to avoid drawing two lines (dot -> dot2, dot2 -> dot)
-
-            let d1 = Vec2::new(dot.translation.x, dot.translation.y);
-            let d2 = Vec2::new(dot2.translation.x, dot2.translation.y);
-            let dist = distance_between_points(d1, d2);
-            if dist < simu_conf.connect_force {
-                let alpha = map(dist, 0., simu_conf.connect_force, 1., 0.);
-                let color = Color::rgba(0.93, 0.51, 0.93, alpha);
-                gizmos.line_2d(d1, d2, color);
-            }
+    for [dot, dot2] in query.iter_combinations() {
+        let d1 = Vec2::new(dot.translation.x, dot.translation.y);
+        let d2 = Vec2::new(dot2.translation.x, dot2.translation.y);
+        let dist = distance_between_points(d1, d2);
+        if dist < simu_conf.connect_force {
+            let alpha = map(dist, 0., simu_conf.connect_force, 1., 0.);
+            let color = Color::rgba(0.93, 0.51, 0.93, alpha);
+            gizmos.line_2d(d1, d2, color);
         }
     }
 }
